@@ -3,7 +3,7 @@ from dm_control import mjcf
 import mujoco.viewer
 import time
 import numpy as np
-import random
+import secrets
 
 # Create Creature Structure
 xml_filename = "the_spider.xml"
@@ -59,14 +59,14 @@ class Spider:
     
     # randomize the number of legs
     def leg_randomization(self):
-        num_to_remove = random.randint(1, len(self.limb_positions_and_eulers))
+        num_to_remove = secrets.SystemRandom().randint(1, len(self.limb_positions_and_eulers))
         for _ in range(num_to_remove):
-            random_index = random.randint(0, len(self.limb_positions_and_eulers) - 1)
+            random_index = secrets.SystemRandom().randint(0, len(self.limb_positions_and_eulers) - 1)
             del self.limb_positions_and_eulers[random_index]
             
-        num_to_remove = random.randint(1, len(self.back_limb_pe))
+        num_to_remove = secrets.SystemRandom().randint(1, len(self.back_limb_pe))
         for _ in range(num_to_remove):
-            random_index = random.randint(0, len(self.back_limb_pe) - 1)
+            random_index = secrets.SystemRandom().randint(0, len(self.back_limb_pe) - 1)
             del self.back_limb_pe[random_index]
     
     # create a limb for flipping
