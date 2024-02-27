@@ -7,7 +7,7 @@ import numpy as np
 # Create Creature Structure
 xml_filename = "the_spider.xml"
 
-class Crab:
+class Spider:
     def __init__(self):
         self.model = mjcf.RootElement()
         self.model.option.timestep = 0.01
@@ -18,11 +18,14 @@ class Crab:
         self.main_body = self.model.worldbody.add('body', pos='0 0 4')
         self.main_body.add('joint', type='free')
         #Cephalothorax
-        self.main_body.add('geom', type='ellipsoid', size='0.1 0.1 0.05', pos='0 0 0')
+        self.main_body.add('geom', type='ellipsoid', size='0.1 0.1 0.05', pos='0 0 0', rgba='0.91 0.278 0.071 1')
         #Abdomen
-        self.main_body.add('geom', type='ellipsoid', size='0.15 0.15 0.1', pos='0.2 0 0')
+        self.main_body.add('geom', type='ellipsoid', size='0.15 0.15 0.1', pos='0.2 0 0', rgba='0.247 0.035 0.98 1')
 
         self.limbs = []
+        
+        self.limbs_back = []
+        
         limb_positions_and_eulers = [
             ("0.05 0.15 -0.1"),    # Limb 1
             ("0.05 -0.15 -0.1"),    # Limb 2
@@ -32,6 +35,27 @@ class Crab:
 
         for i, (pos) in enumerate(limb_positions_and_eulers, start=1):
             self.create_limb(f'limb{i}', pos)
+        
+        back_limb = [
+            #("0.2 0 0.2"),
+            ("0.05 0.15 0.2"),    # Limb 1
+            ("0.05 -0.15 0.2"),    # Limb 2
+            ("0.3 0.2 0.2"),  # Limb 3
+            ("0.3 -0.2 0.2")  # Limb 4
+        ]
+        for i, (pos) in enumerate(back_limb, start=1):
+            self.create_limb_back(f'back_limb{i}', pos)
+            
+        self.num_limbs = len(self.limbs_back) + len(self.limbs)
+        
+    # create a limb for flipping
+    def create_limb_back(self, name, pos):
+        limb = self.main_body.add('body', name=name, pos=pos)
+        limb.add('geom', type='cylinder', size='0.02 0.1', rgba='0 1 0 1')
+        joint_name = f'{name}_joint'
+        limb.add('joint', name=joint_name, type='hinge', axis='0 1 0', pos='0 0 -0.1', range='-45 45')
+        
+        self.limbs_back.append(limb)
 
     def create_limb(self, name, pos):
         limb = self.main_body.add('body', name=name, pos=pos)
@@ -46,12 +70,19 @@ class Crab:
         for idx, limb in enumerate(self.limbs):
             joint_name = f'limb{idx+1}_joint'
             self.model.actuator.add('motor', name=f'motor_{joint_name}', joint=joint_name, gear='1', ctrllimited='true', ctrlrange='-45 45')
+    
+    def create_actuator_back(self):
+        print(self.limbs_back)
+        for idx, limb in enumerate(self.limbs_back):
+            joint_name = f'back_limb{idx+1}_joint'
+            self.model.actuator.add('motor', name=f'motor_back_{joint_name}', joint=joint_name, gear='1', ctrllimited='true', ctrlrange='-45 45')
 
 
-crab_creature = Crab()
-crab_creature.create_actuator()
+spider_creature = Spider()
+spider_creature.create_actuator()
+spider_creature.create_actuator_back()
 
-xml_str = crab_creature.model.to_xml_string()
+xml_str = spider_creature.model.to_xml_string()
 
 # Write the XML string to a file
 with open(xml_filename, "w") as file:
@@ -75,7 +106,7 @@ with mujoco.viewer.launch_passive(model, data) as viewer:
     wave_length = 3  # Controls the length of the wave
 
     for step in range(total_movt):
-        for limb in range(4):  # 6 limbs
+        for limb in range(spider_creature.num_limbs):  # 6 limbs
             joint_index = limb
 
             # Calculate the phase based on limb and part position
