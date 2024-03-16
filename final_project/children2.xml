@@ -1,0 +1,34 @@
+<mujoco model="unnamed_model">
+  <option timestep="0.01"/>
+  <visual>
+    <headlight ambient="0.5 0.5 0.5"/>
+  </visual>
+  <default>
+    <default class="/"/>
+  </default>
+  <worldbody>
+    <light name="//unnamed_light_0" class="/" pos="0 0 3" dir="0 0 -1" diffuse="0.5 0.5 0.5"/>
+    <geom name="//unnamed_geom_0" class="/" type="plane" size="50 50 0.10000000000000001"/>
+    <body name="//unnamed_body_0" pos="0 0 4">
+      <joint name="//unnamed_joint_0" class="/" type="free"/>
+      <geom name="//unnamed_geom_1" class="/" type="ellipsoid" size="0.17770735581815633 0.20229114497424505 0.23384740828911574" rgba="0.247 0.035000000000000003 0.97999999999999998 1" pos="0 0 0"/>
+      <body name="limb0" pos="0.2398109715522837 0.20229114497424505 0.49569907090626575">
+        <geom name="//unnamed_geom_2" class="/" type="cylinder" size="0.01919967624232893 0.49569907090626575" rgba="0 1 0 1"/>
+        <joint name="0_joint" class="/" type="hinge" pos="0 0 -0.49569907090626575" axis="0 1 0" range="-45 45"/>
+      </body>
+      <body name="limb1" pos="-0.15990514199672734 0.20229114497424505 0.37128445912903607">
+        <geom name="//unnamed_geom_3" class="/" type="cylinder" size="0.031233147574828389 0.37128445912903607" rgba="0 1 0 1"/>
+        <joint name="1_joint" class="/" type="hinge" pos="0 0 -0.37128445912903607" axis="0 1 0" range="-45 45"/>
+      </body>
+      <body name="limb2" pos="0.0067028941982569534 0.20229114497424505 0.48664092346801802">
+        <geom name="//unnamed_geom_4" class="/" type="cylinder" size="0.023748427557249874 0.48664092346801802" rgba="0 1 0 1"/>
+        <joint name="2_joint" class="/" type="hinge" pos="0 0 -0.48664092346801802" axis="0 1 0" range="-45 45"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <motor name="motor_0_joint" class="/" ctrllimited="true" ctrlrange="-45 45" gear="10" joint="0_joint"/>
+    <motor name="motor_1_joint" class="/" ctrllimited="true" ctrlrange="-45 45" gear="10" joint="1_joint"/>
+    <motor name="motor_2_joint" class="/" ctrllimited="true" ctrlrange="-45 45" gear="10" joint="2_joint"/>
+  </actuator>
+</mujoco>

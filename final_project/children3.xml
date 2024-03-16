@@ -1,0 +1,24 @@
+<mujoco model="unnamed_model">
+  <option timestep="0.01"/>
+  <visual>
+    <headlight ambient="0.5 0.5 0.5"/>
+  </visual>
+  <default>
+    <default class="/"/>
+  </default>
+  <worldbody>
+    <light name="//unnamed_light_0" class="/" pos="0 0 3" dir="0 0 -1" diffuse="0.5 0.5 0.5"/>
+    <geom name="//unnamed_geom_0" class="/" type="plane" size="50 50 0.10000000000000001"/>
+    <body name="//unnamed_body_0" pos="0 0 4">
+      <joint name="//unnamed_joint_0" class="/" type="free"/>
+      <geom name="//unnamed_geom_1" class="/" type="ellipsoid" size="0.29425776278815263 0.34262506358439171 0.20022717632945253" rgba="0.247 0.035000000000000003 0.97999999999999998 1" pos="0 0 0"/>
+      <body name="limb0" pos="0.0067028941982569534 0.34262506358439171 0.48664092346801802">
+        <geom name="//unnamed_geom_2" class="/" type="cylinder" size="0.023748427557249874 0.48664092346801802" rgba="0 1 0 1"/>
+        <joint name="0_joint" class="/" type="hinge" pos="0 0 -0.48664092346801802" axis="0 1 0" range="-45 45"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <motor name="motor_0_joint" class="/" ctrllimited="true" ctrlrange="-45 45" gear="10" joint="0_joint"/>
+  </actuator>
+</mujoco>

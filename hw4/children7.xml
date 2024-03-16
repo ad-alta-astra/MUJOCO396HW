@@ -13,18 +13,28 @@
       <joint name="//unnamed_joint_0" class="/" type="free"/>
       <geom name="//unnamed_geom_1" class="/" type="ellipsoid" size="0.10000000000000001 0.10000000000000001 0.050000000000000003" rgba="0.91000000000000003 0.27800000000000002 0.070999999999999994 1" pos="0 0 0"/>
       <geom name="//unnamed_geom_2" class="/" type="ellipsoid" size="0.14999999999999999 0.14999999999999999 0.10000000000000001" rgba="0.247 0.035000000000000003 0.97999999999999998 1" pos="0.20000000000000001 0 0"/>
-      <body name="limb1" pos="0.29999999999999999 0.20000000000000001 -0.43093431187706399">
-        <geom name="//unnamed_geom_3" class="/" type="cylinder" size="0.037226887821741377 0.43093431187706399" rgba="0 1 0 1"/>
-        <joint name="limb1_joint" class="/" type="hinge" pos="0 0 0.43093431187706399" axis="0 1 0" range="-45 45"/>
+      <body name="limb1" pos="0.050000000000000003 -0.14999999999999999 -0.46174916320920023">
+        <geom name="//unnamed_geom_3" class="/" type="cylinder" size="0.034162123987062733 0.46174916320920023" rgba="0 1 0 1"/>
+        <joint name="limb1_joint" class="/" type="hinge" pos="0 0 0.46174916320920023" axis="0 1 0" range="-45 45"/>
       </body>
-      <body name="back_limb1" pos="0.29999999999999999 -0.20000000000000001 0.22192588119422202">
-        <geom name="//unnamed_geom_4" class="/" type="cylinder" size="0.036280560763331589 0.22192588119422202" rgba="0 1 0 1"/>
-        <joint name="back_limb1_joint" class="/" type="hinge" pos="0 0 -0.22192588119422202" axis="0 1 0" range="-45 45"/>
+      <body name="limb2" pos="0.29999999999999999 -0.20000000000000001 -0.43565708153267579">
+        <geom name="//unnamed_geom_4" class="/" type="cylinder" size="0.0150755617979095 0.43565708153267579" rgba="0 1 0 1"/>
+        <joint name="limb2_joint" class="/" type="hinge" pos="0 0 0.43565708153267579" axis="0 1 0" range="-45 45"/>
+      </body>
+      <body name="back_limb1" pos="0.050000000000000003 0.14999999999999999 0.27734193420641762">
+        <geom name="//unnamed_geom_5" class="/" type="cylinder" size="0.022094970246426357 0.27734193420641762" rgba="0 1 0 1"/>
+        <joint name="back_limb1_joint" class="/" type="hinge" pos="0 0 -0.27734193420641762" axis="0 1 0" range="-45 45"/>
+      </body>
+      <body name="back_limb2" pos="0.29999999999999999 -0.20000000000000001 0.18606310275174598">
+        <geom name="//unnamed_geom_6" class="/" type="cylinder" size="0.038639986426019325 0.18606310275174598" rgba="0 1 0 1"/>
+        <joint name="back_limb2_joint" class="/" type="hinge" pos="0 0 -0.18606310275174598" axis="0 1 0" range="-45 45"/>
       </body>
     </body>
   </worldbody>
   <actuator>
     <motor name="motor_limb1_joint" class="/" ctrllimited="true" ctrlrange="-45 45" gear="1" joint="limb1_joint"/>
+    <motor name="motor_limb2_joint" class="/" ctrllimited="true" ctrlrange="-45 45" gear="1" joint="limb2_joint"/>
     <motor name="motor_back_back_limb1_joint" class="/" ctrllimited="true" ctrlrange="-45 45" gear="1" joint="back_limb1_joint"/>
+    <motor name="motor_back_back_limb2_joint" class="/" ctrllimited="true" ctrlrange="-45 45" gear="1" joint="back_limb2_joint"/>
   </actuator>
 </mujoco>
