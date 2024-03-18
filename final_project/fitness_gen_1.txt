@@ -1,5 +1,0 @@
-children 0 fitness: 9.118919881126343
-children 1 fitness: 22.301258336412538
-children 2 fitness: 22.55831370226947
-children 3 fitness: 159.7640066089295
-children 4 fitness: 7.721504051518212

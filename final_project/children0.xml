@@ -11,26 +11,19 @@
     <geom name="//unnamed_geom_0" class="/" type="plane" size="50 50 0.10000000000000001"/>
     <body name="//unnamed_body_0" pos="0 0 4">
       <joint name="//unnamed_joint_0" class="/" type="free"/>
-      <geom name="//unnamed_geom_1" class="/" type="ellipsoid" size="0.32431378885542761 0.22591216122764832 0.22906782358079547" rgba="0.247 0.035000000000000003 0.97999999999999998 1" pos="0 0 0"/>
-      <body name="limb0" pos="-0.07214536872898869 0.22591216122764832 0.15427922134028071">
-        <geom name="//unnamed_geom_2" class="/" type="cylinder" size="0.025992100353521487 0.15427922134028071" rgba="0 1 0 1"/>
-        <joint name="0_joint" class="/" type="hinge" pos="0 0 -0.15427922134028071" axis="0 1 0" range="-45 45"/>
+      <geom name="//unnamed_geom_1" class="/" type="ellipsoid" size="0.20517978357399941 0.32827401439382653 0.17708353027529414" rgba="0.247 0.035000000000000003 0.97999999999999998 1" pos="0 0 0"/>
+      <geom name="//unnamed_geom_2" class="/" type="ellipsoid" size="0.096777388067847692 0.030410538643048241 0.048868979406581262" rgba="0.91000000000000003 0.27800000000000002 0.070999999999999994 1" pos="0.3019571716418471 0 0"/>
+      <body name="limb0" pos="0.16753924216469795 0.32827401439382653 0.25209861335193351">
+        <geom name="//unnamed_geom_3" class="/" type="cylinder" size="0.034738534367654145 0.25209861335193351" rgba="0 1 0 1"/>
+        <joint name="0_joint" class="/" type="hinge" pos="0 0 -0.25209861335193351" axis="0 1 0" range="-45 45"/>
       </body>
-      <body name="limb1" pos="0.18172725869811557 -0.22591216122764832 -0.44909702097792314">
-        <geom name="//unnamed_geom_3" class="/" type="cylinder" size="0.036787874496359084 0.44909702097792314" rgba="0 1 0 1"/>
-        <joint name="1_joint" class="/" type="hinge" pos="0 0 0.44909702097792314" axis="0 1 0" range="-45 45"/>
+      <body name="limb1" pos="0.018473458356370209 -0.32827401439382653 0.13698860831119655">
+        <geom name="//unnamed_geom_4" class="/" type="cylinder" size="0.036324887078957806 0.13698860831119655" rgba="0 1 0 1"/>
+        <joint name="1_joint" class="/" type="hinge" pos="0 0 -0.13698860831119655" axis="0 1 0" range="-45 45"/>
       </body>
-      <body name="limb2" pos="0.2398109715522837 0.22591216122764832 0.49569907090626575">
-        <geom name="//unnamed_geom_4" class="/" type="cylinder" size="0.01919967624232893 0.49569907090626575" rgba="0 1 0 1"/>
-        <joint name="2_joint" class="/" type="hinge" pos="0 0 -0.49569907090626575" axis="0 1 0" range="-45 45"/>
-      </body>
-      <body name="limb3" pos="0.20817829787819842 -0.22591216122764832 -0.46463379186780784">
-        <geom name="//unnamed_geom_5" class="/" type="cylinder" size="0.038389386516353104 0.46463379186780784" rgba="0 1 0 1"/>
-        <joint name="3_joint" class="/" type="hinge" pos="0 0 0.46463379186780784" axis="0 1 0" range="-45 45"/>
-      </body>
-      <body name="limb4" pos="0.10990338234435781 -0.22591216122764832 0.21619289323229915">
-        <geom name="//unnamed_geom_6" class="/" type="cylinder" size="0.039937383079740228 0.21619289323229915" rgba="0 1 0 1"/>
-        <joint name="4_joint" class="/" type="hinge" pos="0 0 -0.21619289323229915" axis="0 1 0" range="-45 45"/>
+      <body name="limb2" pos="-0.15483506322859344 0.32827401439382653 -0.39973078972389275">
+        <geom name="//unnamed_geom_5" class="/" type="cylinder" size="0.017753062977577456 0.39973078972389275" rgba="0 1 0 1"/>
+        <joint name="2_joint" class="/" type="hinge" pos="0 0 0.39973078972389275" axis="0 1 0" range="-45 45"/>
       </body>
     </body>
   </worldbody>
@@ -38,7 +31,5 @@
     <motor name="motor_0_joint" class="/" ctrllimited="true" ctrlrange="-45 45" gear="10" joint="0_joint"/>
     <motor name="motor_1_joint" class="/" ctrllimited="true" ctrlrange="-45 45" gear="10" joint="1_joint"/>
     <motor name="motor_2_joint" class="/" ctrllimited="true" ctrlrange="-45 45" gear="10" joint="2_joint"/>
-    <motor name="motor_3_joint" class="/" ctrllimited="true" ctrlrange="-45 45" gear="10" joint="3_joint"/>
-    <motor name="motor_4_joint" class="/" ctrllimited="true" ctrlrange="-45 45" gear="10" joint="4_joint"/>
   </actuator>
 </mujoco>

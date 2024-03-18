@@ -11,15 +11,15 @@
     <geom name="//unnamed_geom_0" class="/" type="plane" size="50 50 0.10000000000000001"/>
     <body name="//unnamed_body_0" pos="0 0 4">
       <joint name="//unnamed_joint_0" class="/" type="free"/>
-      <geom name="//unnamed_geom_1" class="/" type="ellipsoid" size="0.16701960695756948 0.28420500098848833 0.14440052870613046" rgba="0.247 0.035000000000000003 0.97999999999999998 1" pos="0 0 0"/>
-      <geom name="//unnamed_geom_2" class="/" type="ellipsoid" size="0.038392103550708601 0.088616806461000647 0.068082382951168099" rgba="0.91000000000000003 0.27800000000000002 0.070999999999999994 1" pos="0.20541171050827808 0 0"/>
-      <body name="limb0" pos="-0.13488119118022163 0.28420500098848833 -0.19243897724574516">
-        <geom name="//unnamed_geom_3" class="/" type="cylinder" size="0.023731221045279333 0.19243897724574516" rgba="0 1 0 1"/>
-        <joint name="0_joint" class="/" type="hinge" pos="0 0 0.19243897724574516" axis="0 1 0" range="-45 45"/>
+      <geom name="//unnamed_geom_1" class="/" type="ellipsoid" size="0.20517978357399941 0.32827401439382653 0.17708353027529414" rgba="0.247 0.035000000000000003 0.97999999999999998 1" pos="0 0 0"/>
+      <geom name="//unnamed_geom_2" class="/" type="ellipsoid" size="0.058373150481432698 0.083182700167458393 0.079021272647662316" rgba="0.91000000000000003 0.27800000000000002 0.070999999999999994 1" pos="0.26355293405543212 0 0"/>
+      <body name="limb0" pos="0.16753924216469795 0.32827401439382653 0.25209861335193351">
+        <geom name="//unnamed_geom_3" class="/" type="cylinder" size="0.034738534367654145 0.25209861335193351" rgba="0 1 0 1"/>
+        <joint name="0_joint" class="/" type="hinge" pos="0 0 -0.25209861335193351" axis="0 1 0" range="-45 45"/>
       </body>
-      <body name="limb1" pos="0.15565730258803115 0.28420500098848833 0.39618703625178808">
-        <geom name="//unnamed_geom_4" class="/" type="cylinder" size="0.014479895340455295 0.39618703625178808" rgba="0 1 0 1"/>
-        <joint name="1_joint" class="/" type="hinge" pos="0 0 -0.39618703625178808" axis="0 1 0" range="-45 45"/>
+      <body name="limb1" pos="0.10755585358272518 0.32827401439382653 0.43105409183604437">
+        <geom name="//unnamed_geom_4" class="/" type="cylinder" size="0.025268863888981752 0.43105409183604437" rgba="0 1 0 1"/>
+        <joint name="1_joint" class="/" type="hinge" pos="0 0 -0.43105409183604437" axis="0 1 0" range="-45 45"/>
       </body>
     </body>
   </worldbody>
