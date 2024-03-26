@@ -321,12 +321,12 @@ for curr_gen in range(generation_num):
             file.write(f"children {i} fitness: {value}\n")
 
 # record the maximum fitness
-with open(f"max_fitness_per_gen.txt", "w") as file:
+with open("max_fitness_per_gen.txt", "w") as file:
         for i, value in enumerate(max_fitness):
             file.write(f"generation {i} fitness: {value}\n")
 
 # show information
-print(f"-------------------Simulation Complete---------------------------")
+print("-------------------Simulation Complete---------------------------")
 
 # print out a graph
 
