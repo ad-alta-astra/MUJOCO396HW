@@ -3,7 +3,7 @@ from dm_control import mjcf
 import mujoco.viewer
 import time
 import numpy as np
-import random
+import secrets
 
 # Create Creature Structure
 xml_filename = "the_spider.xml"
@@ -59,25 +59,25 @@ class Spider:
     
     # randomize the number of legs
     def leg_randomization(self):
-        num_to_remove = random.randint(1, len(self.limb_positions_and_eulers) - 1)
+        num_to_remove = secrets.SystemRandom().randint(1, len(self.limb_positions_and_eulers) - 1)
         for _ in range(num_to_remove):
-            random_index = random.randint(0, len(self.limb_positions_and_eulers) - 1)
+            random_index = secrets.SystemRandom().randint(0, len(self.limb_positions_and_eulers) - 1)
             del self.limb_positions_and_eulers[random_index]
             
-        num_to_remove = random.randint(1, len(self.back_limb_pe))
+        num_to_remove = secrets.SystemRandom().randint(1, len(self.back_limb_pe))
         for _ in range(num_to_remove):
-            random_index = random.randint(0, len(self.back_limb_pe) - 1)
+            random_index = secrets.SystemRandom().randint(0, len(self.back_limb_pe) - 1)
             del self.back_limb_pe[random_index]
     
     # create a limb for flipping
     def create_limb_back(self, name, pos):
-        rand_height = random.uniform(0.1, 0.5)
+        rand_height = secrets.SystemRandom().uniform(0.1, 0.5)
         numbers_list = pos.split()  # Split the string into a list of numbers
         numbers_list[-1] = str(rand_height)  # Replace the last number with the new number
         newPos = ' '.join(numbers_list)  # Join the numbers back into a string
         
         limb = self.main_body.add('body', name=name, pos=newPos)
-        rand_dia = random.uniform(0.01, 0.04)
+        rand_dia = secrets.SystemRandom().uniform(0.01, 0.04)
         limb.add('geom', type='cylinder', size= f'{rand_dia} {rand_height}', rgba='0 1 0 1')
         joint_name = f'{name}_joint'
         limb.add('joint', name=joint_name, type='hinge', axis='0 1 0', pos=f'0 0 -{rand_height}', range='-45 45')
@@ -85,14 +85,14 @@ class Spider:
         self.limbs_back.append(limb)
 
     def create_limb(self, name, pos):
-        rand_height = random.uniform(0.1, 0.5)
+        rand_height = secrets.SystemRandom().uniform(0.1, 0.5)
         numbers_list = pos.split()  # Split the string into a list of numbers
         numbers_list[-1] = str(-1 * rand_height)  # Replace the last number with the new number
         newPos = ' '.join(numbers_list)  # Join the numbers back into a string
 
         
         limb = self.main_body.add('body', name=name, pos=newPos)
-        rand_dia = random.uniform(0.01, 0.04)
+        rand_dia = secrets.SystemRandom().uniform(0.01, 0.04)
         limb.add('geom', type='cylinder', size=f'{rand_dia} {rand_height}', rgba='0 1 0 1')
         joint_name = f'{name}_joint'
         limb.add('joint', name=joint_name, type='hinge', axis='0 1 0', pos=f'0 0 {rand_height}', range='-45 45')

@@ -7,7 +7,7 @@ from dm_control import mjcf
 import mujoco.viewer
 import time
 import numpy as np
-import random
+import secrets
 
 # Create Creature Structure
 xml_filename = "the_spider.xml"
@@ -27,9 +27,9 @@ class Spider:
         # the position and size should be changeable!!!
         self.body_size = []
         # generate x , y , z
-        self.body_size.append(random.uniform(0.15, 0.4))
-        self.body_size.append(random.uniform(0.15, 0.4))
-        self.body_size.append(random.uniform(0.1, 0.3))
+        self.body_size.append(secrets.SystemRandom().uniform(0.15, 0.4))
+        self.body_size.append(secrets.SystemRandom().uniform(0.15, 0.4))
+        self.body_size.append(secrets.SystemRandom().uniform(0.1, 0.3))
         
         #Abdomen should be at center!!! X Y Z
         self.main_body.add('geom', type='ellipsoid', size=f'{self.body_size[0]} {self.body_size[1]} {self.body_size[2]}', pos='0 0 0', rgba='0.247 0.035 0.98 1') #, density='10')
@@ -39,9 +39,9 @@ class Spider:
         #position of head should be raidus of x of head + body
         
         self.head_size = []
-        self.head_size.append(random.uniform(0.01, self.body_size[0] / 2.0))
-        self.head_size.append(random.uniform(0.01, self.body_size[1] / 2.0))
-        self.head_size.append(random.uniform(0.01, 0.2))
+        self.head_size.append(secrets.SystemRandom().uniform(0.01, self.body_size[0] / 2.0))
+        self.head_size.append(secrets.SystemRandom().uniform(0.01, self.body_size[1] / 2.0))
+        self.head_size.append(secrets.SystemRandom().uniform(0.01, 0.2))
         
         #Cephalothorax
         self.main_body.add('geom', type='ellipsoid', size=f'{self.head_size[0]} {self.head_size[1]} {self.head_size[2]}', pos=f'{self.body_size[0] + self.head_size[0]} 0 0', rgba='0.91 0.278 0.071 1') #, density='10')
@@ -91,7 +91,7 @@ class Spider:
         # the old fashioned way
         
         # randomly select one
-        random_bool = random.choice([True, False])
+        random_bool = secrets.choice([True, False])
         if random_bool:
             self.leg_randomization()
             self.leg_generation()
@@ -109,14 +109,14 @@ class Spider:
         
     def leg_generation_standardized(self):
         self.leg_spec = []
-        self.leg_spec.append(random.uniform(0.01, self.body_size[1] / 10.0))
-        self.leg_spec.append(random.uniform(self.body_size[2], self.body_size[2] * 1.5))
+        self.leg_spec.append(secrets.SystemRandom().uniform(0.01, self.body_size[1] / 10.0))
+        self.leg_spec.append(secrets.SystemRandom().uniform(self.body_size[2], self.body_size[2] * 1.5))
         for i, (pos) in enumerate(self.limb_positions_and_eulers, start=1):
             self.create_limb_standard(f'limb{i}', pos, self.leg_spec)
         
         self.leg_back_spec = []
-        self.leg_back_spec.append(random.uniform(0.01, self.body_size[1] / 10.0))
-        self.leg_back_spec.append(random.uniform(self.body_size[2], self.body_size[2] * 1.5))
+        self.leg_back_spec.append(secrets.SystemRandom().uniform(0.01, self.body_size[1] / 10.0))
+        self.leg_back_spec.append(secrets.SystemRandom().uniform(self.body_size[2], self.body_size[2] * 1.5))
         for i, (pos) in enumerate(self.back_limb_pe, start=1):
             self.create_limb_back_standard(f'back_limb{i}', pos, self.leg_back_spec)
             
@@ -159,25 +159,25 @@ class Spider:
     
     # randomize the number of legs
     def leg_randomization(self):
-        num_to_remove = random.randint(1, len(self.limb_positions_and_eulers) - 1)
+        num_to_remove = secrets.SystemRandom().randint(1, len(self.limb_positions_and_eulers) - 1)
         for _ in range(num_to_remove):
-            random_index = random.randint(0, len(self.limb_positions_and_eulers) - 1)
+            random_index = secrets.SystemRandom().randint(0, len(self.limb_positions_and_eulers) - 1)
             del self.limb_positions_and_eulers[random_index]
             
-        num_to_remove = random.randint(1, len(self.back_limb_pe))
+        num_to_remove = secrets.SystemRandom().randint(1, len(self.back_limb_pe))
         for _ in range(num_to_remove):
-            random_index = random.randint(0, len(self.back_limb_pe) - 1)
+            random_index = secrets.SystemRandom().randint(0, len(self.back_limb_pe) - 1)
             del self.back_limb_pe[random_index]
     
     # create a limb for flipping
     def create_limb_back(self, name, pos):
-        rand_height = random.uniform(0.1, 0.5)
+        rand_height = secrets.SystemRandom().uniform(0.1, 0.5)
         numbers_list = pos.split()  # Split the string into a list of numbers
         numbers_list[-1] = str(rand_height)  # Replace the last number with the new number
         newPos = ' '.join(numbers_list)  # Join the numbers back into a string
         
         limb = self.main_body.add('body', name=name, pos=newPos)
-        rand_dia = random.uniform(0.01, 0.04)
+        rand_dia = secrets.SystemRandom().uniform(0.01, 0.04)
         limb.add('geom', type='cylinder', size= f'{rand_dia} {rand_height}', rgba='0 1 0 1')
         joint_name = f'{name}_joint'
         limb.add('joint', name=joint_name, type='hinge', axis='0 1 0', pos=f'0 0 -{rand_height}', range='-45 45')
@@ -185,14 +185,14 @@ class Spider:
         self.limbs_back.append(limb)
 
     def create_limb(self, name, pos):
-        rand_height = random.uniform(0.1, 0.5)
+        rand_height = secrets.SystemRandom().uniform(0.1, 0.5)
         numbers_list = pos.split()  # Split the string into a list of numbers
         numbers_list[-1] = str(-1 * rand_height)  # Replace the last number with the new number
         newPos = ' '.join(numbers_list)  # Join the numbers back into a string
 
         
         limb = self.main_body.add('body', name=name, pos=newPos)
-        rand_dia = random.uniform(0.01, 0.04)
+        rand_dia = secrets.SystemRandom().uniform(0.01, 0.04)
         limb.add('geom', type='cylinder', size=f'{rand_dia} {rand_height}', rgba='0 1 0 1')
         joint_name = f'{name}_joint'
         limb.add('joint', name=joint_name, type='hinge', axis='0 1 0', pos=f'0 0 {rand_height}', range='-45 45')
