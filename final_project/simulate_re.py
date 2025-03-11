@@ -3,8 +3,8 @@ from dm_control import mjcf
 import mujoco.viewer
 import time
 import numpy as np
-import random
 import matplotlib.pyplot as plt
+import secrets
 
 class Spider:
     # we should not do anything here
@@ -50,16 +50,16 @@ class Spider:
     
     def create_new(self):
         # create a body
-        self.body_size.append(random.uniform(0.15, 0.4))
-        self.body_size.append(random.uniform(0.15, 0.4))
-        self.body_size.append(random.uniform(0.1, 0.3))
+        self.body_size.append(secrets.SystemRandom().uniform(0.15, 0.4))
+        self.body_size.append(secrets.SystemRandom().uniform(0.15, 0.4))
+        self.body_size.append(secrets.SystemRandom().uniform(0.1, 0.3))
         
         self.all_specs.append(self.body_size)
         
         # create a head
-        self.head_size.append(random.uniform(0.01, self.body_size[0] / 2.0))
-        self.head_size.append(random.uniform(0.01, self.body_size[1] / 2.0))
-        self.head_size.append(random.uniform(0.01, self.body_size[2] / 2.0))
+        self.head_size.append(secrets.SystemRandom().uniform(0.01, self.body_size[0] / 2.0))
+        self.head_size.append(secrets.SystemRandom().uniform(0.01, self.body_size[1] / 2.0))
+        self.head_size.append(secrets.SystemRandom().uniform(0.01, self.body_size[2] / 2.0))
         
         self.all_specs.append(self.head_size)
         
@@ -67,7 +67,7 @@ class Spider:
         # create positions for limb
         for i in range(init_legs_num):
             # 0x 1y 2z(also height) 3 diameter
-            self.limb_positions_and_eulers.append([random.uniform(-1 * self.body_size[0], self.body_size[0]), random.choice([1, -1]) * self.body_size[1], random.choice([1, -1]) * random.uniform(0.1, 0.5), random.uniform(0.01, 0.04)])
+            self.limb_positions_and_eulers.append([secrets.SystemRandom().uniform(-1 * self.body_size[0], self.body_size[0]), secrets.choice([1, -1]) * self.body_size[1], secrets.choice([1, -1]) * secrets.SystemRandom().uniform(0.1, 0.5), secrets.SystemRandom().uniform(0.01, 0.04)])
         
         self.all_specs.append(self.limb_positions_and_eulers)
 
@@ -87,13 +87,13 @@ class Spider:
     
     def evlove(self):
         # choose to evolve the body or not
-        if random.choice([True, False]):
+        if secrets.choice([True, False]):
             # generate a new body
             self.body_evolve()
             
         # choose to evolve the head or not
         # if True:
-        if random.choice([True, False]):
+        if secrets.choice([True, False]):
             # generate a new head
             self.head_evolve()
         
@@ -106,9 +106,9 @@ class Spider:
     def body_evolve(self):
         self.body_size = []
         # generate a new body
-        self.body_size.append(random.uniform(0.15, 0.4))
-        self.body_size.append(random.uniform(0.15, 0.4))
-        self.body_size.append(random.uniform(0.1, 0.3))
+        self.body_size.append(secrets.SystemRandom().uniform(0.15, 0.4))
+        self.body_size.append(secrets.SystemRandom().uniform(0.15, 0.4))
+        self.body_size.append(secrets.SystemRandom().uniform(0.1, 0.3))
         
         # update the all specs
         self.all_specs[0] = self.body_size
@@ -128,11 +128,11 @@ class Spider:
         self.head_size = []
         # choose if to get a new head or be head less
         # if False:
-        if random.choice([True, False]):
+        if secrets.choice([True, False]):
             # choose a new head
-            self.head_size.append(random.uniform(0.01, self.body_size[0] / 2.0))
-            self.head_size.append(random.uniform(0.01, self.body_size[1] / 2.0))
-            self.head_size.append(random.uniform(0.01, self.body_size[2] / 2.0))
+            self.head_size.append(secrets.SystemRandom().uniform(0.01, self.body_size[0] / 2.0))
+            self.head_size.append(secrets.SystemRandom().uniform(0.01, self.body_size[1] / 2.0))
+            self.head_size.append(secrets.SystemRandom().uniform(0.01, self.body_size[2] / 2.0))
         else:
             # choose to be head less
             pass
@@ -142,17 +142,17 @@ class Spider:
         
     def leg_evolve(self):
         # choose to decrease leg or not
-        if random.choice([True, False]):
+        if secrets.choice([True, False]):
             # Ensure that at least one element remains after deletion
             remaining_elements = len(self.limb_positions_and_eulers) - 1 if len(self.limb_positions_and_eulers) > 1 else 1
             
             delete_max = 6
             # Randomly select number of elements to delete
-            num_to_delete = random.randint(0, min(delete_max, remaining_elements))
+            num_to_delete = secrets.SystemRandom().randint(0, min(delete_max, remaining_elements))
             
             # Delete random elements
             for _ in range(num_to_delete):
-                random_index = random.randint(0, len(self.limb_positions_and_eulers) - 1)
+                random_index = secrets.SystemRandom().randint(0, len(self.limb_positions_and_eulers) - 1)
                 del self.limb_positions_and_eulers[random_index]
                 
         # leg number limiter
@@ -160,13 +160,13 @@ class Spider:
         increase_max = 3
         
         # choose to increase leg or not
-        if random.choice([True, False]):
+        if secrets.choice([True, False]):
             # Randomly select number of elements to add
-            num_to_add = random.randint(0, min(leg_max - len(self.limb_positions_and_eulers), increase_max))
+            num_to_add = secrets.SystemRandom().randint(0, min(leg_max - len(self.limb_positions_and_eulers), increase_max))
             
             # Add random elements
             for _ in range(num_to_add):
-                self.limb_positions_and_eulers.append([random.uniform(-1 * self.body_size[0], self.body_size[0]), random.choice([1, -1]) * self.body_size[1], random.choice([1, -1]) * random.uniform(0.1, 0.5), random.uniform(0.01, 0.04)])
+                self.limb_positions_and_eulers.append([secrets.SystemRandom().uniform(-1 * self.body_size[0], self.body_size[0]), secrets.choice([1, -1]) * self.body_size[1], secrets.choice([1, -1]) * secrets.SystemRandom().uniform(0.1, 0.5), secrets.SystemRandom().uniform(0.01, 0.04)])
 
         
         # update the all specs
